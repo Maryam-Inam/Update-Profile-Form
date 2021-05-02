@@ -2,6 +2,7 @@ $(function(){
      var name,age,city,gender;
     $("#addbtn").on("click",handleAddBtnClick);
     $("#resetbtn").on("click",resetForm);
+    var enRemovelink=true;
     $("a").click(updateOnTable);
     $("#addbtn").removeClass('disabled');
     $("#updatebtn").addClass('disabled');
@@ -18,9 +19,11 @@ function handleAddBtnClick(){
         if(checkInput()){
             $("#age").removeClass("error")
             $("#name").removeClass("error")
-            $("#tbody").append("<tr><td id="+"added_name"+">"+name+"</td><td id="+"added_gender"+">"+gender+"</td><td id="+"added_age"+">"+age+"</td><td id="+"added_city"+">"+city+"</td><td><a href="+"#"+" id="+"updatelink"+">"+"Update/"+"</a><a href="+"#"+" id="+"removelink"+">"+" Remove"+"</a></td></tr>");
+            $("#tbody").append("<tr><td id="+"added_name"+">"+name+"</td><td id="+"added_gender"+">"+gender+"</td><td id="+"added_age"+">"+age+"</td><td id="+"added_city"+">"+city+"</td><td><a href="+"#"+" class="+"updatelink"+">"+"Update/"+"</a><a href="+"#"+" class="+"removelink"+">"+" Remove"+"</a></td></tr>");
         $('a').css('color','black');
+        enRemovelink=true;
             $("a").click(updateOnTable);
+        resetForm();
         }
         else{return;}
     }
@@ -40,16 +43,19 @@ function resetForm(){
     }
 
     /* resetting values */
+    $('#age').parent().find("#spa").remove();
+    $('#name').parent().find("#spn").remove();
+    $("#age").removeClass("error")
+    $("#name").removeClass("error")
     $("#name").val("")
     $("#age").val("");
-     $("#select option:selected").val("Select City");
-     $("#select").val("Select City");
-     $("input[name=gender]").prop('checked', false);
+     $("#select option:selected").val("Lahore");
+     $("#select").val("Lahore");
+     $("input[name='gender'][value='Male']").prop('checked', true);
 }
 function updateOnTable(){
-    var id=$(this).attr('id');
     var $sname = $(this).closest("tr")   // Finds the closest row <tr> 
-                       .find("#added_name")     // Gets a descendent with class="nr"
+                       .find("#added_name")     // Gets a descendent with id="added_name"
                        .text();      
     var $sgender = $(this).closest("tr") 
                        .find("#added_gender")   
@@ -60,9 +66,11 @@ function updateOnTable(){
     var $scity = $(this).closest("tr") 
                        .find("#added_city") 
                        .text();         
-
-    if(id=="updatelink")
+    
+    if($(this).hasClass("updatelink"))
     {
+        $('.removelink').removeAttr('href');
+        enRemovelink=false;
         
         /* enabling update button */
      $("#updatebtn").removeClass('disabled');
@@ -79,11 +87,12 @@ function updateOnTable(){
     }
     else
     {
-         $(this).parent().parent().remove();
+        if(enRemovelink==true){
+            $(this).parent().parent().remove();
+        }
     }
-    var $td=$(this);
     var row=$(this).closest("tr");
-    $("#updatebtn").on("click",function(){
+    $("#updatebtn").unbind().click(function(){
 
         if(!($("#updatebtn").hasClass('disabled'))){
             $('#age').parent().find("#spa").remove();
@@ -95,6 +104,9 @@ function updateOnTable(){
             row.find("td:eq(1)").text($("input[type='radio']:checked").val());
             row.find("td:eq(2)").text($("#age").val());
             row.find("td:eq(3)").text($("#select option:selected").val());
+            $('.removelink').attr('href','#');
+            enRemovelink=true;
+            resetForm();
         }
         else{
             return;
