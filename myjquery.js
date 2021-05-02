@@ -63,6 +63,7 @@ function updateOnTable(){
 
     if(id=="updatelink")
     {
+        
         /* enabling update button */
      $("#updatebtn").removeClass('disabled');
     /* Disabling add button */
@@ -85,6 +86,11 @@ function updateOnTable(){
     $("#updatebtn").on("click",function(){
 
         if(!($("#updatebtn").hasClass('disabled'))){
+            $('#age').parent().find("#spa").remove();
+        $('#name').parent().find("#spn").remove();
+        if(checkInput()){
+            $("#age").removeClass("error")
+            $("#name").removeClass("error")
             row.find("td:eq(0)").text($("#name").val());
             row.find("td:eq(1)").text($("input[type='radio']:checked").val());
             row.find("td:eq(2)").text($("#age").val());
@@ -93,24 +99,34 @@ function updateOnTable(){
         else{
             return;
         }
+
+        }
+        else{
+            return;
+        }
     });
     
 }
 function checkInput(){
-    if(correctAge() || correctName()){
-        return true;
+    var bool=true;
+    if(!correctAge()){
+        bool=false
     }
-return false;
+    if(!correctName()){
+        return false;
+    }
+    return bool;
 }
 function correctAge(){
     var givenAge=$("#age").val();
+    console.log("inside currentAge()");
      if(!($.isNumeric(givenAge)) && !!givenAge)
      {
       $("#age").addClass("error")
     $('#age').parent().append('<span id="spa">Age should be a numeric value.</span>');
         return false;
   }
-    if((givenAge<10 && !!age) || givenAge>50)
+    if((givenAge<10 && !!givenAge) || givenAge>50)
 {
     $("#age").addClass("error")
     $('#age').parent().append('<span id="spa">Age should be between 10 and 50 only.</span>');
@@ -121,9 +137,11 @@ function correctAge(){
     $('#age').parent().append('<span id="spa">Field can not be left empty.</span>');
     return false;
 }
+ $("#age").removeClass("error")
 return true;
 }
 function correctName(){
+    console.log("inside currentName()");
         var wrongexp= new RegExp('[^A-Za-z]');
         var givenName=$("#name").val();
 if(givenName.match(wrongexp) && !!givenName)  
@@ -142,5 +160,6 @@ if(!givenName){
     $('#name').parent().append('<span id="spn">Field can not be left empty.</span>');
     return false;
 }
+ $("#name").removeClass("error")
 return true;
 }
