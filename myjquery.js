@@ -5,7 +5,7 @@ $(function(){
     var enRemovelink=true;
     $("a").click(updateOnTable);
     $("#addbtn").removeClass('disabled');
-    $("#updatebtn").addClass('disabled');
+    $(".updatebtn").addClass('disabled');
 });
 function handleAddBtnClick(){
     if(!($("#addbtn").hasClass('disabled')))
@@ -38,8 +38,8 @@ function resetForm(){
         $("#addbtn").removeClass('disabled');
     }
     /* disabling update button */
-    if(!($("#updatebtn").hasClass('disabled'))){
-        $("#updatebtn").addClass('disabled');
+    if(!($(".updatebtn").hasClass('disabled'))){
+        $(".updatebtn").addClass('disabled');
     }
 
     /* resetting values */
@@ -73,7 +73,7 @@ function updateOnTable(){
         enRemovelink=false;
         
         /* enabling update button */
-     $("#updatebtn").removeClass('disabled');
+     $(".updatebtn").removeClass('disabled');
     /* Disabling add button */
      $("#addbtn").addClass('disabled');
 
@@ -92,9 +92,9 @@ function updateOnTable(){
         }
     }
     var row=$(this).closest("tr");
-    $("#updatebtn").unbind().click(function(){
+    $(".updatebtn").unbind().click(function(){
 
-        if(!($("#updatebtn").hasClass('disabled'))){
+        if(!($(".updatebtn").hasClass('disabled'))){
             $('#age').parent().find("#spa").remove();
         $('#name').parent().find("#spn").remove();
         if(checkInput()){
@@ -106,7 +106,6 @@ function updateOnTable(){
             row.find("td:eq(3)").text($("#select option:selected").val());
             $('.removelink').attr('href','#');
             enRemovelink=true;
-            resetForm();
         }
         else{
             return;
