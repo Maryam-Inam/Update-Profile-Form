@@ -119,7 +119,6 @@ function checkInput(){
 }
 function correctAge(){
     var givenAge=$("#age").val();
-    console.log("inside currentAge()");
      if(!($.isNumeric(givenAge)) && !!givenAge)
      {
       $("#age").addClass("error")
@@ -141,7 +140,6 @@ function correctAge(){
 return true;
 }
 function correctName(){
-    console.log("inside currentName()");
         var wrongexp= new RegExp('[^A-Za-z]');
         var givenName=$("#name").val();
 if(givenName.match(wrongexp) && !!givenName)  
