@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>assignment2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="myjquery.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <table
+            class="table caption-top table-striped table-hover"
+            style="border: 2px solid black"
+          >
+            <caption style="caption-side: top; font-weight: bold; color: black">
+              List of Persons
+            </caption>
+            <thead
+              class="table-secondary"
+              style="background-color: rgb(180, 178, 178)"
+            >
+              <tr>
+                <td>Name</td>
+                <td>Gender</td>
+                <td>Age</td>
+                <td>City</td>
+                <td style="width: 200px">Action</td>
+              </tr>
+            </thead>
+
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div class="col-lg-5">
+          <label for="topform" style="margin-top: 15px; font-weight: bold"
+            >Add/Update Person Form</label
+          >
+          <div class="outsideform">
+            <form id="input-form" class="form" style="margin: 20px">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <label for="name">Name:</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input
+                      type="name"
+                      id="name"
+                      placeholder="Enter Name"
+                      name="name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="Radio">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <label for="gender">Gender:</label>
+                  </div>
+                  <div id="gender" class="col-sm-7">
+                    <label
+                      ><input
+                        type="radio"
+                        name="gender"
+                        value="Male"
+                        checked
+                      />Male</label
+                    >
+                    <label
+                      ><input
+                        type="radio"
+                        name="gender"
+                        value="Female"
+                      />Female</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <label for="age">Age:</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input type="age" id="age" placeholder="Enter Age"
+                    name="age"" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="city" style="margin-left: 10px">City:</label>
+                </div>
+                <div class="col-sm-6">
+                  <select
+                    id="select"
+                    class="form-select"
+                    aria-label="Default select example"
+                    style="border: 2px solid black; width: 180px"
+                  >
+                    <option selected>Lahore</option>
+                    <option>Karachi</option>
+                    <option>Islamabad</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <div class="btn">
+              <button
+                id="resetbtn"
+                class="btn btn-secondary"
+                style="margin-left: 10px"
+              >
+                reset</button
+              ><button id="addbtn" class="btn btn-secondary">add</button
+              ><button id="updatebtn" class="btn btn-secondary">update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
