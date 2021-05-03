@@ -49,9 +49,6 @@ function resetForm(){
     if(!($(".updatebtn").hasClass('disabled'))){
         $(".updatebtn").addClass('disabled');
     }
-//==================================================================================================
-    //remove should be enabled
-//==================================================================================================
     if($('.removelink').hasClass('disabled')){
         $('removelink').removeClass('disabled');
         $('.removelink').attr('href','#');
@@ -67,9 +64,7 @@ function resetForm(){
     $("#select").removeClass("error")
     $("#name").val("")
     $("#age").val("");
-        //==================================================================================================
-     //.val of option:selected nai aaye ga just select aaye ga.. nai tou wo latest selected ki value hi replave kr deta hay lahore kay sath
-//==================================================================================================
+        
      $("#select").val("");
      $("input[name='gender'][value='Male']").prop('checked', true);
 }
@@ -96,9 +91,6 @@ function updateOnTable(){
      $(".updatebtn").removeClass('disabled');
     /* Disabling add button */
      $("#addbtn").addClass('disabled');
-//==================================================================================================
-     //remove should be disabled
-//==================================================================================================
     $('.removelink').addClass('disabled');
 
      /* data transfer from table to form */
