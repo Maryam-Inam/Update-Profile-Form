@@ -16,10 +16,18 @@ function handleAddBtnClick(){
         gender = $("input[type='radio']:checked").val();
         $('#age').parent().find("#spa").remove();
         $('#name').parent().find("#spn").remove();
+         $('#select').parent().find("#spc").remove();
         if(checkInput()){
             $("#age").removeClass("error")
             $("#name").removeClass("error")
-            $("#tbody").append("<tr><td id="+"added_name"+">"+name+"</td><td id="+"added_gender"+">"+gender+"</td><td id="+"added_age"+">"+age+"</td><td id="+"added_city"+">"+city+"</td><td><a href="+"#"+" class="+"updatelink"+">"+"Update/"+"</a><a href="+"#"+" class="+"removelink"+">"+" Remove"+"</a></td></tr>");
+             $("#select").removeClass("error")
+            $("#tbody").append("<tr><td id="+"added_name"+">"+name+
+            "</td><td id="+"added_gender"+">"+gender+"</td><td id="+
+            "added_age"+">"+age+"</td><td id="+
+            "added_city"+">"+
+            city+"</td><td><a href="+"#"+" class="+"updatelink"+">"+
+            "Update/"+"</a><a href="+"#"+" class="+"removelink"+">"+
+            " Remove"+"</a></td></tr>");
         $('a').css('color','black');
         enRemovelink=true;
             $("a").click(updateOnTable);
@@ -41,16 +49,28 @@ function resetForm(){
     if(!($(".updatebtn").hasClass('disabled'))){
         $(".updatebtn").addClass('disabled');
     }
+//==================================================================================================
+    //remove should be enabled
+//==================================================================================================
+    if($('.removelink').hasClass('disabled')){
+        $('removelink').removeClass('disabled');
+        $('.removelink').attr('href','#');
+            enRemovelink=true;
+    }
 
     /* resetting values */
     $('#age').parent().find("#spa").remove();
     $('#name').parent().find("#spn").remove();
+    $('#select').parent().find("#spc").remove();
     $("#age").removeClass("error")
     $("#name").removeClass("error")
+    $("#select").removeClass("error")
     $("#name").val("")
     $("#age").val("");
-     $("#select option:selected").val("Lahore");
-     $("#select").val("Lahore");
+        //==================================================================================================
+     //.val of option:selected nai aaye ga just select aaye ga.. nai tou wo latest selected ki value hi replave kr deta hay lahore kay sath
+//==================================================================================================
+     $("#select").val("");
      $("input[name='gender'][value='Male']").prop('checked', true);
 }
 function updateOnTable(){
@@ -76,12 +96,16 @@ function updateOnTable(){
      $(".updatebtn").removeClass('disabled');
     /* Disabling add button */
      $("#addbtn").addClass('disabled');
+//==================================================================================================
+     //remove should be disabled
+//==================================================================================================
+    $('.removelink').addClass('disabled');
 
      /* data transfer from table to form */
     $("#name").val($sname)
     $("#age").val($sage);
-     $("#select option:selected").val($scity);
-     $("#select").val($scity);
+    //  $("#select option:selected").val($scity);
+    $("#select").val($scity);
      $("input[value="+$sgender+"]").prop('checked', true);
      oldname=$sname;
     }
@@ -97,9 +121,11 @@ function updateOnTable(){
         if(!($(".updatebtn").hasClass('disabled'))){
             $('#age').parent().find("#spa").remove();
         $('#name').parent().find("#spn").remove();
+        $('#select').parent().find("#spc").remove();
         if(checkInput()){
             $("#age").removeClass("error")
             $("#name").removeClass("error")
+            $("#select").removeClass("error")
             row.find("td:eq(0)").text($("#name").val());
             row.find("td:eq(1)").text($("input[type='radio']:checked").val());
             row.find("td:eq(2)").text($("#age").val());
@@ -124,7 +150,11 @@ function checkInput(){
         bool=false
     }
     if(!correctName()){
-        return false;
+        bool= false;
+    }
+    if(!correctCity()){
+        console.log("not correct city")
+        bool= false;
     }
     return bool;
 }
@@ -170,5 +200,17 @@ if(!givenName){
     return false;
 }
  $("#name").removeClass("error")
+return true;
+}
+
+function correctCity(){
+         var givenCity=$("#select").val();
+console.log("given city: "+!!givenCity);
+if(!givenCity){
+    $("#select").addClass("error")
+    $('#select').parent().append('<span id="spc">Field can not be left empty.</span>');
+    return false;
+}
+ $("#select").removeClass("error")
 return true;
 }
